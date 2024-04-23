@@ -9,10 +9,33 @@ import UIKit
 
 class SubjectsTableViewController: UITableViewController {
 
+    @IBAction func PushEditAction(_ sender: Any) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        
+    }
     
     @IBAction func pushAddAction(_ sender: Any) {
-        addSubject(nameSubject: "New Subject")
-        tableView.reloadData()
+        let alertController =  UIAlertController(title: "Новый предмет", message: nil, preferredStyle: .alert)
+        
+        alertController.addTextField{ (textField) in
+            textField.placeholder = "Название предмета"
+        }
+        let alertAction1 = UIAlertAction(title: "Отмена", style: .cancel)
+        { (alert) in
+            
+        }
+        let alertAction2 = UIAlertAction(title: "Добавить", style: .default)
+        { (alert) in
+            let newSubject = alertController.textFields![0].text
+            addSubject(nameSubject: newSubject!)
+            self.tableView.reloadData()
+        }
+        
+        
+        alertController.addAction(alertAction1)
+        alertController.addAction(alertAction2)
+        present(alertController, animated: true, completion: nil)
+    
     }
     
     
@@ -43,7 +66,14 @@ class SubjectsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        cell.textLabel?.text = Subjects[indexPath.row]
+        let currentSubject = Subjects[indexPath.row]
+        cell.textLabel?.text = currentSubject["Name"] as? String
+        
+        if (currentSubject["isCompleted"] as? Bool) == true {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
         return cell
     }
 
@@ -68,13 +98,22 @@ class SubjectsTableViewController: UITableViewController {
         }    
     }
 
-
-    /*
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if changeState(at: indexPath.row){
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        }
+    }
+    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        moveSubject(fromIndex: fromIndexPath.row, toIndex: to.row)
 
     }
-    */
+
 
     /*
     // Override to support conditional rearranging of the table view.

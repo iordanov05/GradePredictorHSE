@@ -40,6 +40,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Предметы" id="J3F-9b-qPB">
+                        <barButtonItem key="leftBarButtonItem" title="Изменить" id="8ar-pQ-dl6">
+                            <connections>
+                                <action selector="PushEditAction:" destination="Iz5-rp-tkn" id="1B6-O2-LEc"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Nfo-Aj-rm9">
                             <connections>
                                 <action selector="pushAddAction:" destination="Iz5-rp-tkn" id="GvQ-mY-LS5"/>

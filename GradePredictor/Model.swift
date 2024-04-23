@@ -7,26 +7,38 @@
 
 import Foundation
 
-var Subjects: [String] = ["АИП", "Матанализ"]
+var Subjects: [[String: Any]] {
+    set {
+        UserDefaults.standard.set(newValue, forKey: "SubjectsDataKey")
+        UserDefaults.standard.synchronize()
+    }
 
-func addSubject(nameSubject: String){
-    Subjects.append(nameSubject)
-    saveData()
+    get {
+        if let array = UserDefaults.standard.array(forKey: "SubjectsDataKey") as? [[String: Any]]{
+            return  array
+        } else {
+        return []
+        }
+    }
+}
+func addSubject(nameSubject: String, isCompleted: Bool = false){
+    Subjects.append(["Name": nameSubject, "isCompleted": false])
     
 
 }
 
 func removeSubject(at index: Int){
     Subjects.remove(at: index)
-    saveData()
 
 }
 
-func saveData(){
-    
+func moveSubject(fromIndex: Int, toIndex: Int){
+    let from = Subjects[fromIndex]
+    Subjects.remove(at: fromIndex)
+    Subjects.insert(from, at: toIndex)
 }
 
-func loadData(){
-    
+func changeState(at item: Int) -> Bool{
+    Subjects[item]["isCompleted"] = !(Subjects[item]["isCompleted"]  as! Bool)
+    return (Subjects[item]["isCompleted"] as! Bool)
 }
-
