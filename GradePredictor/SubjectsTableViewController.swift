@@ -8,12 +8,20 @@
 import UIKit
 
 class SubjectsTableViewController: UITableViewController {
+    
+    @IBOutlet weak var EditButton: UIBarButtonItem!
 
     @IBAction func PushEditAction(_ sender: Any) {
-        tableView.setEditing(!tableView.isEditing, animated: true)
-        
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true)
+            EditButton.title = "Изменить"
+        } else {
+            tableView.setEditing(true, animated: true)
+            EditButton.title = "Готово"
+        }
     }
-    
+
+
     @IBAction func pushAddAction(_ sender: Any) {
         let alertController =  UIAlertController(title: "Новый предмет", message: nil, preferredStyle: .alert)
         
@@ -69,11 +77,11 @@ class SubjectsTableViewController: UITableViewController {
         let currentSubject = Subjects[indexPath.row]
         cell.textLabel?.text = currentSubject["Name"] as? String
         
-        if (currentSubject["isCompleted"] as? Bool) == true {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
+//        if (currentSubject["isCompleted"] as? Bool) == true {
+//            cell.accessoryType = .disclosureIndicator
+//        } else {
+//            cell.accessoryType = .none
+//        }
         return cell
     }
 
@@ -100,18 +108,31 @@ class SubjectsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedRow = indexPath.row
+        print("Нажал")
+        let GradeStoryboard = UIStoryboard(name: "GradeViewController", bundle: nil)
+        let GradeVC = GradeStoryboard.instantiateViewController(withIdentifier: "GradeViewController") as! GradeViewController
+        GradeVC.selectedRow = selectedRow
+        navigationController?.pushViewController(GradeVC, animated: true)
         
-        if changeState(at: indexPath.row){
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        }
+        
+        
+        
+        
+        
+        
+//        if changeState(at: indexPath.row){
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .disclosureIndicator
+//        } else {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+//        }
     }
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         moveSubject(fromIndex: fromIndexPath.row, toIndex: to.row)
 
+     
     }
 
 

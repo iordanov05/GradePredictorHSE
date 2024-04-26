@@ -14,6 +14,8 @@
 		D42734972BD71C1400174AB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42734952BD71C1400174AB1 /* LaunchScreen.storyboard */; };
 		D42734A12BD83BC300174AB1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42734A02BD83BC300174AB1 /* Model.swift */; };
 		D42734A32BD83C2300174AB1 /* SubjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42734A22BD83C2300174AB1 /* SubjectsTableViewController.swift */; };
+		D42734A62BDB09C200174AB1 /* GradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42734A52BDB09C200174AB1 /* GradeViewController.swift */; };
+		D42734A82BDB0A2B00174AB1 /* GradeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42734A72BDB0A2B00174AB1 /* GradeViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D42734982BD71C1400174AB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D42734A02BD83BC300174AB1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D42734A22BD83C2300174AB1 /* SubjectsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsTableViewController.swift; sourceTree = "<group>"; };
+		D42734A52BDB09C200174AB1 /* GradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeViewController.swift; sourceTree = "<group>"; };
+		D42734A72BDB0A2B00174AB1 /* GradeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GradeViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +67,21 @@
 				D427348A2BD71C1200174AB1 /* AppDelegate.swift */,
 				D427348C2BD71C1200174AB1 /* SceneDelegate.swift */,
 				D42734902BD71C1200174AB1 /* Main.storyboard */,
+				D42734A42BDB097A00174AB1 /* Grade */,
 				D42734932BD71C1400174AB1 /* Assets.xcassets */,
 				D42734952BD71C1400174AB1 /* LaunchScreen.storyboard */,
 				D42734982BD71C1400174AB1 /* Info.plist */,
 			);
 			path = GradePredictor;
+			sourceTree = "<group>";
+		};
+		D42734A42BDB097A00174AB1 /* Grade */ = {
+			isa = PBXGroup;
+			children = (
+				D42734A52BDB09C200174AB1 /* GradeViewController.swift */,
+				D42734A72BDB0A2B00174AB1 /* GradeViewController.storyboard */,
+			);
+			path = Grade;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +145,7 @@
 				D42734972BD71C1400174AB1 /* LaunchScreen.storyboard in Resources */,
 				D42734942BD71C1400174AB1 /* Assets.xcassets in Resources */,
 				D42734922BD71C1200174AB1 /* Main.storyboard in Resources */,
+				D42734A82BDB0A2B00174AB1 /* GradeViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +160,7 @@
 				D427348D2BD71C1200174AB1 /* SceneDelegate.swift in Sources */,
 				D42734A32BD83C2300174AB1 /* SubjectsTableViewController.swift in Sources */,
 				D42734A12BD83BC300174AB1 /* Model.swift in Sources */,
+				D42734A62BDB09C200174AB1 /* GradeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

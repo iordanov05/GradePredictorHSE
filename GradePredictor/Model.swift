@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 var Subjects: [[String: Any]] {
     set {
@@ -38,7 +39,8 @@ func moveSubject(fromIndex: Int, toIndex: Int){
     Subjects.insert(from, at: toIndex)
 }
 
-func changeState(at item: Int) -> Bool{
-    Subjects[item]["isCompleted"] = !(Subjects[item]["isCompleted"]  as! Bool)
-    return (Subjects[item]["isCompleted"] as! Bool)
-}
+//func changeState(at item: Int) -> Bool{
+//    Subjects[item]["isCompleted"] = !(Subjects[item]["isCompleted"]  as! Bool)
+//    return (Subjects[item]["isCompleted"] as! Bool)
+//}
+//
