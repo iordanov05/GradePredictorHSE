@@ -1,12 +1,6 @@
-//
-//  Model.swift
-//  GradePredictor
-//
-//  Created by Иорданов Павел on 23.04.2024.
-//
 
-import Foundation
 import UIKit
+import Foundation
 
 var Subjects: [[String: Any]] {
     set {
@@ -15,22 +9,30 @@ var Subjects: [[String: Any]] {
     }
 
     get {
-        if let array = UserDefaults.standard.array(forKey: "SubjectsDataKey") as? [[String: Any]]{
-            return  array
+        if let array = UserDefaults.standard.array(forKey: "SubjectsDataKey") as? [[String: Any]] {
+            return array
         } else {
-        return []
+            return []
         }
     }
 }
-func addSubject(nameSubject: String, isCompleted: Bool = false){
-    Subjects.append(["Name": nameSubject, "isCompleted": false])
-    
 
+func addSubject(name: String, mark: Int) {
+    Subjects.append(["Name": name, "Criteria": [], "Mark": mark])
+}
+
+func addCriterion(subjectIndex: Int, criterionName: String, coefficient: Double) {
+    if var subject = Subjects[subjectIndex] as? [String: Any] {
+        if var criteria = subject["Criteria"] as? [[String: Any]] {
+            criteria.append(["CriterionName": criterionName, "Coefficient": coefficient])
+            subject["Criteria"] = criteria
+            Subjects[subjectIndex] = subject
+        }
+    }
 }
 
 func removeSubject(at index: Int){
     Subjects.remove(at: index)
-
 }
 
 func moveSubject(fromIndex: Int, toIndex: Int){
@@ -38,9 +40,3 @@ func moveSubject(fromIndex: Int, toIndex: Int){
     Subjects.remove(at: fromIndex)
     Subjects.insert(from, at: toIndex)
 }
-
-//func changeState(at item: Int) -> Bool{
-//    Subjects[item]["isCompleted"] = !(Subjects[item]["isCompleted"]  as! Bool)
-//    return (Subjects[item]["isCompleted"] as! Bool)
-//}
-//

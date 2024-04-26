@@ -15,6 +15,7 @@ class SubjectsTableViewController: UITableViewController {
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
             EditButton.title = "Изменить"
+            dump(Subjects)
         } else {
             tableView.setEditing(true, animated: true)
             EditButton.title = "Готово"
@@ -35,7 +36,7 @@ class SubjectsTableViewController: UITableViewController {
         let alertAction2 = UIAlertAction(title: "Добавить", style: .default)
         { (alert) in
             let newSubject = alertController.textFields![0].text
-            addSubject(nameSubject: newSubject!)
+            addSubject(name: newSubject!, mark: 0)
             self.tableView.reloadData()
         }
         
